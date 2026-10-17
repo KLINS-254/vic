@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#f36b0b" />
+  <meta name="description" content="Book your ENA Coach journey online." />
+  <title>ENA Coach — Book Your Journey</title>
+  <link rel="manifest" href="/manifest.webmanifest" />
+  <link rel="icon" href="/assets/ena-mark.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="#" aria-label="ENA Coach home">
+      <img src="/assets/ena-mark.svg" alt="ENA Coach" />
+      <span>Exemplary Service</span>
+    </a>
+    <div class="header-actions">
+      <button class="language" id="languageBtn" aria-label="Language">🇬🇧</button>
+      <button class="menu-btn" id="menuBtn" aria-label="Open menu"><span></span><span></span><span></span></button>
+    </div>
+  </header>
+  <nav class="mobile-menu hidden" id="mobileMenu">
+    <a href="#booking">Book a ticket</a><a href="#amenities">Amenities</a><a href="#why-us">Why choose us</a>
+    <button id="myBookingsBtn">My bookings</button>
+  </nav>
+  <main>
+    <section class="hero" id="booking">
+      <div class="booking-panel">
+        <div class="booking-top">
+          <div class="trip-types">
+            <label><input type="radio" name="tripType" value="oneway" checked> <span>One Way</span></label>
+            <label><input type="radio" name="tripType" value="round"> <span>Round Trip</span></label>
+          </div>
+          <div class="travler">Book your next ticket using <strong><i>t</i>ravler</strong></div>
+        </div>
+        <div class="trip-grid">
+          <label class="field">
+            <span>From</span><span class="field-control"><span class="field-icon">▤</span>
+            <select id="fromCity" aria-label="From">
+              <option>NAIROBI</option><option>KISII</option><option>KISUMU</option><option>MIGORI</option><option>HOMABAY</option><option>KEHANCHA</option><option>RANGWE</option><option>SORI</option><option>MAGENA</option><option>NAKURU</option><option>MOMBASA</option>
+            </select></span>
+          </label>
+          <button class="swap-btn" id="swapBtn" aria-label="Swap locations">⇅</button>
+          <label class="field">
+            <span>To</span><span class="field-control"><span class="field-icon pin">♧</span>
+            <select id="toCity" aria-label="To">
+              <option>KISII</option><option>NAIROBI</option><option>KISUMU</option><option>MIGORI</option><option>HOMABAY</option><option>KEHANCHA</option><option>RANGWE</option><option>SORI</option><option>MAGENA</option><option>NAKURU</option><option>MOMBASA</option>
+            </select></span>
+          </label>
+          <label class="field">
+            <span>Travel Date</span><span class="field-control"><span class="field-icon">▣</span><input id="travelDate" type="date" required /></span>
+          </label>
+          <label class="field return-date hidden" id="returnDateWrap">
+            <span>Return Date</span><span class="field-control"><span class="field-icon">▣</span><input id="returnDate" type="date" /></span>
+          </label>
+        </div>
+        <button class="primary search-btn" id="searchBtn">SEARCH BUS</button>
+        <p class="form-error hidden" id="searchError"></p>
+      </div>
+    </section>
+
+    <section class="content-section" id="amenities">
+      <h2>Amenities</h2><p class="section-subtitle">Offering world-class transportation services in an innovative way.</p>
+      <div class="amenity-grid">
+        <article class="amenity amenity-blue"><span class="amenity-icon">WiFi</span><strong>Free Wi-Fi</strong></article>
+        <article class="amenity amenity-green"><span class="amenity-icon">ϟ</span><strong>Power Outlets</strong></article>
+        <article class="amenity amenity-yellow"><span class="amenity-icon">♧</span><strong>Extra Legroom</strong></article>
+      </div>
+      <div id="why-us"><h2>Why Choose Us</h2><p class="section-subtitle">Experience the best transport service in the region.</p>
+        <div class="feature-grid">
+          <article class="feature"><span class="feature-icon mpesa">m-pesa</span><div><strong>Lipa na M-Pesa</strong><p>Convenient payment options for your booking.</p></div></article>
+          <article class="feature"><span class="feature-icon comfort">✋</span><div><strong>Comfort</strong><p>Travel comfortably with our reliable coaches.</p></div></article>
+          <article class="feature"><span class="feature-icon internet">📱</span><div><strong>Full Amenities</strong><p>Our buses are fitted with useful onboard amenities.</p></div></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="results-section hidden" id="resultsSection">
+      <div class="route-banner"><button class="back-link" id="backToSearch">←</button><div><strong id="routeTitle">NAIROBI - KISII</strong><span id="routeDate"></span></div></div>
+      <div class="filter-row">
+        <button class="primary small" id="modifyTrip">Modify Trip</button>
+        <label class="filter">♧ <select id="boardingFilter"><option value="">Boarding</option><option>KPCU Office</option><option>Uthiru</option><option>Mutharakwa</option><option>KANGEMI</option><option>Nairobi CBD</option></select></label>
+        <label class="filter">♧ <select id="droppingFilter"><option value="">Dropping</option><option>Kisii Town</option><option>Keroka</option><option>Sondu</option><option>Awendo</option><option>Rongo</option></select></label>
+        <label class="filter">◷ <select id="departureFilter"><option value="">Departure</option><option value="early">Before 7 AM</option><option value="day">7 AM – 12 PM</option><option value="late">After 12 PM</option></select></label>
+        <label class="filter">★ <select id="amenitiesFilter"><option value="">Amenities</option><option value="wifi">Free Wi-Fi</option><option value="luxury">Luxury</option></select></label>
+      </div>
+      <div class="results-heading"><span>Search Result</span><span id="foundCount">6 Found</span></div>
+      <div class="bus-list" id="busList"></div>
+    </section>
+  </main>
+
+  <div class="modal-backdrop hidden" id="seatModal">
+    <section class="modal seat-modal" role="dialog" aria-modal="true" aria-labelledby="seatTitle">
+      <div class="modal-heading"><h2 id="seatTitle">Seat Selection</h2><button class="close-btn" data-close="seatModal" aria-label="Close">×</button></div>
+      <div class="seat-legend"><span><i class="legend vip"></i> VIP</span><span><i class="legend normal"></i> Normal</span><span><i class="legend business"></i> Business</span><span><i class="legend booked"></i> Booked</span></div>
+      <div class="bus-layout" id="busLayout"></div>
+      <div class="selected-summary"><h3>Selected Seats</h3><p id="selectedSeatsText">No seats selected</p><div class="seat-bottom-fields">
+        <label>Boarding Point<select id="boardingPoint"><option value="">Select a boarding point</option><option>KPCU Office</option><option>Uthiru</option><option>Mutharakwa</option><option>KANGEMI</option><option>Nairobi CBD</option></select></label>
+        <label>Dropping Point<select id="droppingPoint"><option value="">Select a dropping point</option><option>Kisii Town</option><option>Keroka</option><option>Sondu</option><option>Awendo</option><option>Rongo</option></select></label>
+      </div><div class="seat-total"><span id="seatTotal">KES 0</span><button class="primary" id="continuePassenger" disabled>Choose seat and points to continue</button></div></div>
+    </section>
+  </div>
+
+  <section class="page-panel hidden" id="passengerPage">
+    <div class="page-title-row"><h1>PASSENGERS INFO</h1><button class="primary small" id="viewBusInfo">ⓘ View Bus Info</button></div>
+    <div class="passenger-card"><div class="passenger-card-top"><span>Primary Passenger</span><strong>♧ Seat: <b id="passengerSeat">—</b></strong></div>
+      <form id="passengerForm">
+        <div class="passenger-fields">
+          <label>Name<input id="passengerName" placeholder="Full Name" required autocomplete="name" /></label>
+          <label>ID/Passport Number<input id="passengerId" placeholder="ID / Passport No" required /></label>
+          <label>Nationality<input id="nationality" value="Kenyan" required /></label>
+          <label>Age<input id="passengerAge" type="number" min="1" max="120" placeholder="Age" required /></label>
+          <label>Gender<select id="gender"><option>Female</option><option>Male</option><option>Prefer not to say</option></select></label>
+        </div>
+        <div class="passenger-fields contact-fields">
+          <label class="full">Email<input id="passengerEmail" type="email" placeholder="name@example.com" required autocomplete="email" /></label>
+          <label class="full">Phone Number<div class="phone-input"><select aria-label="Country code"><option>+254 Kenya</option><option>+255 Tanzania</option><option>+256 Uganda</option></select><input id="passengerPhone" type="tel" placeholder="712 345 678" required autocomplete="tel" /></div></label>
+        </div>
+        <div class="passenger-actions"><button class="dark-btn" type="submit">Proceed to Pay</button></div>
+      </form>
+    </div>
+    <p class="help-line">Personal Information<br>Do you need help? Call us &nbsp; Email: hello@ena.co.ke | Phone: +254 709 215 215</p>
+  </section>
+
+  <section class="page-panel hidden" id="paymentPage">
+    <div class="payment-topline"><span>ⓘ Manual Payment steps</span><button class="primary small" id="paymentBusInfo">ⓘ View Bus Info</button></div>
+    <div class="payment-heading"><h1>Payment Details</h1><span class="countdown" id="countdown">10:00 Remaining</span></div>
+    <button class="wallet-login" id="walletLogin">login to apply wallet</button>
+    <hr><h3>Select Payment Method</h3>
+    <div class="payment-methods"><button class="payment-method selected" data-method="mpesa"><strong class="mpesa-word">m-pesa</strong><span>Mpesa</span></button><button class="payment-method" data-method="airtel"><strong class="airtel-word">◒ airtel</strong><span>Airtel Money</span></button></div>
+    <label class="payment-phone-label">Phone Number<div class="phone-input payment-phone"><select aria-label="Country code"><option>+254</option><option>+255</option><option>+256</option></select><input id="paymentPhone" type="tel" placeholder="7XXXXXXXX" required /></div></label>
+    <div class="payment-total"><span>Total to pay</span><strong id="paymentTotal">KES 1,700</strong></div>
+    <p class="warning">⚠ Note: Once seats are selected and paid for, tickets are non-refundable.</p>
+    <label class="consent"><input type="checkbox" id="paymentConsent" checked> <span>By proceeding, I consent to ENA Coach collecting and storing my information in accordance with the <a href="#" id="privacyLink">Privacy Policy</a> and <a href="#" id="termsLink">Terms &amp; Conditions</a>.</span></label>
+    <button class="pay-secure" id="payBtn">♙ &nbsp; Pay Securely with Mpesa</button>
+    <p class="payment-note">Demo interface: connect an approved payment provider to send a real payment request.</p>
+  </section>
+
+  <div class="modal-backdrop hidden" id="paymentModal"><section class="modal payment-dialog" role="dialog" aria-modal="true">
+    <div class="status-symbol" id="paymentStatusSymbol">✓</div><h2 id="paymentStatusTitle">Payment Initiated</h2><p id="paymentStatusText">A payment request would be sent to your phone after a live M-Pesa integration is configured.</p><p class="reference" id="paymentReference"></p><button class="primary" id="closePaymentResult">Back to booking</button>
+  </section></div>
+  <div class="toast hidden" id="toast" role="status"></div>
+  <footer><span>© ENA Coach</span><span>Travel safely. Travel comfortably.</span></footer>
+  <script src="/app.js"></script>
+</body>
+</html>
